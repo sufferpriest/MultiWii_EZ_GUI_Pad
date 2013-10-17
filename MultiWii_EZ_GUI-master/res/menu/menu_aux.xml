@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/MenuReadCheckbox"
+        android:showAsAction="always|withText"
+        android:title="@string/Read">
+    </item>
+    <item
+        android:id="@+id/MenuSaveCheckbox"
+        android:showAsAction="always|withText"
+        android:title="@string/SavetoEEPROM">
+    </item>
+
+</menu>

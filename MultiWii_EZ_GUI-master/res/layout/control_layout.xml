@@ -1,0 +1,151 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/brushed"
+    android:orientation="vertical" >
+<LinearLayout
+    android:id="@+id/seektable"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
+    <TableLayout
+        android:id="@+id/seektable_aux"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+            <TextView
+                android:text="AUX1" />
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="500"
+                 />
+            <TextView
+                android:text="AUX2" />
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="500" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+            <TextView
+                android:text="AUX3" />
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="500" />
+            <TextView
+                android:text="AUX4" />
+            <SeekBar
+                android:id="@+id/seekBar4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="500" />
+        </TableRow>
+    </TableLayout>
+    
+    <TableLayout
+        android:id="@+id/seektable_tuning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+            <TextView
+                android:text="THRO" />
+            <SeekBar
+                android:id="@+id/seekBar5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="600"
+                android:progress="300"
+                 />
+            <TextView
+                android:text="YAW" />
+            <SeekBar
+                android:id="@+id/seekBar6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="600"
+                android:progress="300" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+            <TextView
+                android:text="ROLL" />
+            <SeekBar
+                android:id="@+id/seekBar7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="600"
+                android:progress="300" />
+            <TextView
+                android:text="PITCH" />
+            <SeekBar
+                android:id="@+id/seekBar8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="600"
+                android:progress="300" />
+        </TableRow>
+    </TableLayout>
+    </LinearLayout>
+<!-- android:layout_height="250dp" -->
+    <LinearLayout
+        android:id="@+id/op"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/seektable" >
+
+        <com.ezio.multiwii.radio.StickView
+            android:id="@+id/stickView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1" />
+
+        <com.ezio.multiwii.radio.StickView
+            android:id="@+id/stickView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</RelativeLayout>

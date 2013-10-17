@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/brushed"
+    android:keepScreenOn="true" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    
+        <LinearLayout
+            android:id="@+id/leftpanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+		    <!-- Top up half of screen -->
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="4" >
+	            <!-- Connect/Serial -->
+		        <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="1" >
+		            <include android:id="@+id/pad_cali" layout="@layout/pad_other_cali"/>
+		        </LinearLayout>
+	            <!-- pid / aux  -->
+		        <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="1.5" >
+		            <include android:id="@+id/pad_pid_aux" layout="@layout/pad_pid_aux"/>
+		        </LinearLayout>
+	            <!-- function / aux  -->
+		        <LinearLayout
+		            android:id="@+id/func_aux"
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:background="@drawable/frame"
+		            android:layout_weight="1" >
+			        <LinearLayout
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content" >
+		                <Button
+		                    android:id="@+id/funcaux_bt1"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_margin="5dp"
+		                    android:onClick="FuncAuxReadOnClick"
+		                    android:text="@string/Read" />
+		                <Button
+		                    android:id="@+id/funcaux_bt2"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_margin="5dp"
+		                    android:onClick="FuncAuxSetOnClick"
+		                    android:text="@string/Save" />
+		            </LinearLayout>
+		        </LinearLayout>
+	            <!-- RC radio channel  -->
+		        <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="1" >
+		            <include android:id="@+id/pad_radio" layout="@layout/pad_radio"/>
+		        </LinearLayout>
+	        </LinearLayout>
+	        
+	        <!-- Bottom down half of screen -->
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:background="@drawable/frame"
+	            android:layout_weight="3" >
+			    <LinearLayout
+			        android:id="@+id/graphy"
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="3" >
+		            <LinearLayout
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical" >
+		                <Button
+		                    android:id="@+id/graphy_bt1"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_margin="5dp"
+		                    android:onClick="GraphsPauseOnClick"
+		                    android:text="@string/Pause" />
+		                <Button
+		                    android:id="@+id/graphy_bt2"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_margin="5dp"
+		                    android:onClick="GraphsShowOnClick"
+		                    android:text="@string/show" />
+		            </LinearLayout>
+		        </LinearLayout>
+			    <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="1" >
+		            <include android:id="@+id/pad_gps" layout="@layout/pad_gps"/>
+		        </LinearLayout>
+	        </LinearLayout>
+	    </LinearLayout>
+	    
+        <LinearLayout
+            android:id="@+id/rightpanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+	            <com.ezio.multiwii.dashboard.Dashboard2View
+		            android:id="@+id/dashboard2"
+		            android:layout_width="match_parent"
+		            android:layout_height="0dp"
+		            android:layout_weight="1.5" />
+		        <LinearLayout 
+				    android:layout_width="match_parent"
+				    android:layout_height="0dp"
+				    android:layout_weight="3"
+				    android:orientation="vertical">
+	                <include android:id="@+id/pad_dashboard1" layout="@layout/pad_dashboard1"/>
+	            </LinearLayout>
+        </LinearLayout>
+        
+    </LinearLayout>
+
+	<include android:id="@+id/pad_control" layout="@layout/pad_control"/>
+</RelativeLayout>
