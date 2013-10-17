@@ -1,7 +1,7 @@
 MultiWii_EZ_GUI_Pad
 ===================
 
-This is based on https://github.com/eziosoft/MultiWii_EZ_GUI, and I add some features for China Area.
+This is based on https://github.com/eziosoft/MultiWii_EZ_GUI (v90-3.44), and I add some features for China Area.
 
 (1) Add 10 inches Pad UI layout. You can switch UI mode between Phone mode and Pad mode.
 <br>
