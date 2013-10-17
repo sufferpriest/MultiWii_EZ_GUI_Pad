@@ -3,7 +3,7 @@ MultiWii_EZ_GUI_Pad
 
 This is based on https://github.com/eziosoft/MultiWii_EZ_GUI, and I add some features for China Area.
 
-(1) Add 10 inches Pad UI layout. You and switch UI mode between Phone mode and Pad mode.
+(1) Add 10 inches Pad UI layout. You can switch UI mode between Phone mode and Pad mode.
 <br>
 (2) Add AUX/Tuning/Arm/DisArm operation in control UI, for easy to control your multicopter.
 <br>
