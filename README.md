@@ -11,3 +11,7 @@ This is based on https://github.com/eziosoft/MultiWii_EZ_GUI (v90-3.44), and I a
     You can install Google Map using this App (need your phone rooted).
 <br>
 (4) Add TTS voice speaking for Chinese language by using eSpeak lib.
+
+<br>
+
+Please see screen shot in wiki (https://github.com/sufferpriest/MultiWii_EZ_GUI_Pad/wiki)
