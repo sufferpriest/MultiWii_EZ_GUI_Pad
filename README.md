@@ -15,3 +15,7 @@ This is based on https://github.com/eziosoft/MultiWii_EZ_GUI (v90-3.44), and I a
 <br>
 
 Please see screen shot in wiki (https://github.com/sufferpriest/MultiWii_EZ_GUI_Pad/wiki)
+
+<br>
+
+Please pay attention that don't use function "control your copter" for your large copter or low speed bluetooth.
