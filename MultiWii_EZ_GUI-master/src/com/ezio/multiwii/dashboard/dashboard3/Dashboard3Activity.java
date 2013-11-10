@@ -23,11 +23,11 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,13 +36,14 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.app.App;
 import com.ezio.multiwii.helpers.Functions;
 import com.ezio.multiwii.mapoffline.MapOfflineCirclesOverlay;
 import com.ezio.sec.Sec;
 
-public class Dashboard3Activity extends Activity {
+public class Dashboard3Activity extends SherlockFragmentActivity {
 	private boolean killme = false;
 
 	Random random = new Random(); // for test
@@ -133,7 +134,7 @@ public class Dashboard3Activity extends Activity {
 					ProgressBarTx.setVisibility(View.GONE);
 				}
 				app.Frequentjobs();
-				app.mw.SendRequest();
+				app.mw.SendRequest(app.MainRequestMethod);
 
 				timer1 = System.currentTimeMillis() + app.RefreshRate;
 
@@ -164,6 +165,7 @@ public class Dashboard3Activity extends Activity {
 		app.ConnectionBug();
 		setContentView(R.layout.dashboard3_layout);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		getSupportActionBar().hide();
 
 		mapView = (MapView) findViewById(R.id.mapViewOSM);
 		mapView.setTileSource(TileSourceFactory.MAPNIK);
@@ -171,7 +173,7 @@ public class Dashboard3Activity extends Activity {
 		mapView.setBuiltInZoomControls(true);
 
 		myMapController = mapView.getController();
-		myMapController.setZoom(app.MapZoomLevel);
+		myMapController.setZoom((int)app.MapZoomLevel);
 
 		circles = new MapOfflineCirclesOverlay(getApplicationContext());
 		copter = new MapOfflineCopterOverlayD3(getApplicationContext());
@@ -196,6 +198,7 @@ public class Dashboard3Activity extends Activity {
 		ProgressBarRx.setMax(110);
 		ProgressBarTx.setMax(110);
 
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
 	private void CenterLocation(GeoPoint centerGeoPoint) {

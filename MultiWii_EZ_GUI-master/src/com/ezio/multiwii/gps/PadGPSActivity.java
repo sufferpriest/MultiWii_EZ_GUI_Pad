@@ -79,7 +79,7 @@ public class PadGPSActivity {
             
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			// app.mw.SendRequestGetWayPoint(0);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);

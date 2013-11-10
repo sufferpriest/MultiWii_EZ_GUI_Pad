@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ezio.multiwii"
-    android:versionCode="90"
-    android:versionName="3.44.1" >
+    android:versionCode="108"
+    android:versionName="3.61" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -10,7 +10,8 @@
     <application
         android:name=".app.App"
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+	android:theme="@style/AppTheme" >
         <uses-library android:name="com.google.android.maps" android:required="false" />
         <activity
             android:name=".Main.PadMainMultiWiiActivity"
@@ -109,8 +110,7 @@
         <activity
             android:name=".advanced.ControlActivity"
             android:screenOrientation="landscape"
-            
-             >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".advanced.AdvancedActivity"
@@ -150,8 +150,7 @@
         </activity>
         <activity
             android:name=".dashboard.dashboard3.Dashboard3Activity"
-            android:screenOrientation="fullSensor"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <activity
             android:name=".dashboard.dashboard3.Dashboard3GoogleMapActivity"
@@ -161,6 +160,28 @@
         
         <service android:name=".gps.MOCK_GPS_Service" >
         </service>
+
+        <activity
+            android:name=".dashboard.Dashboard4Activity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+        <activity
+            android:name=".waypoints.MapWaypointsActivity"
+            android:configChanges="orientation|screenSize" >
+        </activity>
+        <activity
+            android:name="com.ezio.multiwii.aux_pid.ServosActivity"
+            android:configChanges="orientation|screenSize" >
+        </activity>
+        <activity
+            android:name=".other.MiscActivity"
+            android:configChanges="orientation|screenSize" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDt7krGYo5jP5oG7GNzLfNqiGkl0xmI7Tk" />
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -173,5 +194,16 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <permission
+        android:name="com.ezio.multiwii.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.ezio.multiwii.permission.MAPS_RECEIVE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
 </manifest>

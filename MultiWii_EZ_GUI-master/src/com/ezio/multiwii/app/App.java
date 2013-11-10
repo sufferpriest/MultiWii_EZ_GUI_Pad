@@ -44,7 +44,7 @@ import com.ezio.multiwii.helpers.Notifications;
 import com.ezio.multiwii.helpers.Sensors;
 import com.ezio.multiwii.helpers.SoundManager;
 import com.ezio.multiwii.helpers.TTS;
-import com.ezio.multiwii.mw.MultiWii210;
+import com.ezio.multiwii.mw.MultiWii230;
 import com.ezio.multiwii.mw.MultirotorData;
 import com.ezio.multiwii.waypoints.Waypoint;
 import com.ezio.sec.Sec;
@@ -99,101 +99,109 @@ public class App extends Application implements Sensors.Listener {
 
 	public boolean loggingON = false;
 	// ----settings-----
-	private static String COPYFRSKYTOMW = "COPYFRSKYTOMW";
+	private static final String COPYFRSKYTOMW = "COPYFRSKYTOMW";
 	public boolean CopyFrskyToMW;
 
-	private static String COMMUNICATION_TYPE_MW = "CommunicationTypeMW";
-	public static int COMMUNICATION_TYPE_BT = 0;
-	public static int COMMUNICATION_TYPE_SERIAL_FTDI = 1;
-	public static int COMMUNICATION_TYPE_SERIAL_OTHERCHIPS = 2;
+	private static final String COMMUNICATION_TYPE_MW = "CommunicationTypeMW";
+	public static final int COMMUNICATION_TYPE_BT = 0;
+	public static final int COMMUNICATION_TYPE_SERIAL_FTDI = 1;
+	public static final int COMMUNICATION_TYPE_SERIAL_OTHERCHIPS = 2;
 	public int CommunicationTypeMW = COMMUNICATION_TYPE_BT;
 
-	public static String SERIAL_PORT_BAUD_RATE_MW = "SerialPortBaudRateMW";
+	public static final String SERIAL_PORT_BAUD_RATE_MW = "SerialPortBaudRateMW";
 	public String SerialPortBaudRateMW = "115200";
 
-	public static String SERIAL_PORT_BAUD_RATE_FRSKY = "SerialPortBaudRateFrSky";
+	public static final String SERIAL_PORT_BAUD_RATE_FRSKY = "SerialPortBaudRateFrSky";
 	public String SerialPortBaudRateFrSky = "9600";
 
-	private static String COMMUNICATION_TYPE_FRSKY = "CommunicationTypeFrSky";
+	private static final String COMMUNICATION_TYPE_FRSKY = "CommunicationTypeFrSky";
 	public int CommunicationTypeFrSky = COMMUNICATION_TYPE_BT;
 
-	private static String RADIOMODE = "RadioMode";
+	private static final String RADIOMODE = "RadioMode";
 	public int RadioMode;
 
-	private static String PROTOCOL = "PROTOCOL1";
+	private static final String PROTOCOL = "PROTOCOL1";
 	public int Protocol;
 
-	private static String MAGMODE = "MAGMODE";
+	private static final String MAGMODE = "MAGMODE";
 	public int MagMode;
 
-	private static String TEXTTOSPEACH = "TEXTTOSPEACH1";
+	private static final String TEXTTOSPEACH = "TEXTTOSPEACH1";
 	public boolean TextToSpeach = true;
 
-	private static String MACADDERSS = "MACADDERSS";
+	private static final String MACADDERSS = "MACADDERSS";
 	public String MacAddress = "";
 
-	private static String MACADDERSSFRSKY = "MACADDERSSFRSKY";
+	private static final String MACADDERSSFRSKY = "MACADDERSSFRSKY";
 	public String MacAddressFrsky = "";
 
-	private static String CONNECTONSTART = "CONNECTONSTART";
+	private static final String CONNECTONSTART = "CONNECTONSTART";
 	public boolean ConnectOnStart = false;
 
-	private static String ALTCORRECTION = "ALTCORRECTION";
+	private static final String ALTCORRECTION = "ALTCORRECTION";
 	public boolean AltCorrection = false;
 
-	private static String ADVANCEDFUNCTIONS = "ADVANCEDFUNCTIONS";
+	private static final String ADVANCEDFUNCTIONS = "ADVANCEDFUNCTIONS";
 	public boolean AdvancedFunctions = false;
 
-	private static String DISABLEBTONEXIT = "DISABLEBTONEXIT";
+	private static final String DISABLEBTONEXIT = "DISABLEBTONEXIT";
 	public boolean DisableBTonExit = true;
 
-	// private static String G1 = "G1";
-	// private int _1Gtemp; // 1g value, used for g-force display
-
-	private static String FORCELANGUAGE = "FORCELANGUAGE";
+	private static final String FORCELANGUAGE = "FORCELANGUAGE";
 	public String ForceLanguage = "";
 
-	private static String PERIODICSPEAKING = "PERIODICSPEAKING";
+	private static final String PERIODICSPEAKING = "PERIODICSPEAKING";
 	public int PeriodicSpeaking = 20000; // in ms
 
-	private static String VOLTAGEALARM = "VOLTAGEALARM";
+	private static final String VOLTAGEALARM = "VOLTAGEALARM";
 	public float VoltageAlarm = 0;
 
-	private static String USEOFFLINEMAPS = "USEOFFLINEMAPS";
-	//public boolean UseOfflineMaps = true;
+	private static final String USEOFFLINEMAPS = "USEOFFLINEMAPS";
+	public boolean UseOfflineMaps = false;
 
-	private static String APPSTARTCOUNTER = "APPSTARTCOUNTER";
+	private static final String APPSTARTCOUNTER = "APPSTARTCOUNTER";
 	public int AppStartCounter = 0;
 
-	private static String DONATEBUTTONPRESSED = "DONATEBUTTONPRESSED";
+	private static final String DONATEBUTTONPRESSED = "DONATEBUTTONPRESSED";
 	public int DonateButtonPressed = 0;
 
-	private static String REVERSEROLL = "REVERSEROLL";
+	private static final String REVERSEROLL = "REVERSEROLL";
 	public boolean ReverseRoll = false;
 
-	private static String MAPZOOMLEVEL = "MAPZOOMLEVEL";
-	public int MapZoomLevel = 9;
+	private static final String MAPZOOMLEVEL = "MAPZOOMLEVEL1";
+	public float MapZoomLevel = 9;
 
-	private static String MAPCENTERPERIOD = "MAPCENTERPERIOD";
+	private static final String MAPCENTERPERIOD = "MAPCENTERPERIOD";
 	public int MapCenterPeriod = 3;
 
+	private static final String MAINREQUESTMETHOD = "MAINREQUESTMETHOD";
+	public int MainRequestMethod = 1;
+
+	private static final String FRSKY_SUPPORT = "FRSKY_SUPPORT";
+	public boolean FrskySupport = false;
+
 	// graphs
-	public String ACCROLL = "ACC ROLL";
-	public String ACCPITCH = "ACC PITCH";
-	public String ACCZ = "ACC Z";
+	public final String ACCROLL = "ACC ROLL";
+	public final String ACCPITCH = "ACC PITCH";
+	public final String ACCZ = "ACC Z";
 
-	public String GYROROLL = "GYRO ROLL";
-	public String GYROPITCH = "GYRO PITCH";
-	public String GYROYAW = "GYRO YAW";
+	public final String GYROROLL = "GYRO ROLL";
+	public final String GYROPITCH = "GYRO PITCH";
+	public final String GYROYAW = "GYRO YAW";
 
-	public String MAGROLL = "MAG ROLL";
-	public String MAGPITCH = "MAG PITCH";
-	public String MAGYAW = "MAG YAW";
+	public final String MAGROLL = "MAG ROLL";
+	public final String MAGPITCH = "MAG PITCH";
+	public final String MAGYAW = "MAG YAW";
 
-	public String ALT = "ALT";
-	public String HEAD = "HEAD";
+	public final String ALT = "ALT";
+	public final String HEAD = "HEAD";
 
-	private static String GRAPHSTOSHOW = "GRAPHSTOSHOW";
+	public final String DEBUG1 = "DEBUG1";
+	public final String DEBUG2 = "DEBUG2";
+	public final String DEBUG3 = "DEBUG3";
+	public final String DEBUG4 = "DEBUG4";
+
+	private final static String GRAPHSTOSHOW = "GRAPHSTOSHOW";
 	public String GraphsToShow = ACCROLL + ";" + ACCZ + ";" + ALT + ";" + GYROPITCH;
 
 	// graphs end
@@ -390,20 +398,15 @@ public class App extends Application implements Sensors.Listener {
 
 	public void SelectProtocol() {
 
-		// if (Protocol == 200) {
-		// mw = new MultiWii200(bt);
-		// }
-
 		Protocol = 210;
 
 		if (Protocol == 210) {
-			mw = new MultiWii210(commMW);
+			mw = new MultiWii230(commMW);
 		}
 
 		frskyProtocol = new FrskyProtocol(commFrsky);
 
 		oldActiveModes = new boolean[20];// not the best method
-		// mw._1G = _1Gtemp;
 
 	}
 
@@ -423,7 +426,6 @@ public class App extends Application implements Sensors.Listener {
 			Toast.makeText(getApplicationContext(), "You are a tester", Toast.LENGTH_SHORT).show();
 
 		DisableBTonExit = prefs.getBoolean(DISABLEBTONEXIT, true);
-		// _1Gtemp = prefs.getInt(G1, 256);
 		ForceLanguage = prefs.getString(FORCELANGUAGE, "");
 		PeriodicSpeaking = prefs.getInt(PERIODICSPEAKING, 20000);
 		VoltageAlarm = prefs.getFloat(VOLTAGEALARM, 9.9f);
@@ -436,14 +438,14 @@ public class App extends Application implements Sensors.Listener {
 		AppStartCounter = prefs.getInt(APPSTARTCOUNTER, 0);
 		DonateButtonPressed = prefs.getInt(DONATEBUTTONPRESSED, 0);
 		ReverseRoll = prefs.getBoolean(REVERSEROLL, false);
-		MapZoomLevel = prefs.getInt(MAPZOOMLEVEL, 9);
+		MapZoomLevel = prefs.getFloat(MAPZOOMLEVEL, 9);
 		MapCenterPeriod = prefs.getInt(MAPCENTERPERIOD, 3);
 		CommunicationTypeMW = prefs.getInt(COMMUNICATION_TYPE_MW, COMMUNICATION_TYPE_BT);
 		CommunicationTypeFrSky = prefs.getInt(COMMUNICATION_TYPE_FRSKY, COMMUNICATION_TYPE_BT);
 		SerialPortBaudRateMW = prefs.getString(SERIAL_PORT_BAUD_RATE_MW, "115200");
 		SerialPortBaudRateFrSky = prefs.getString(SERIAL_PORT_BAUD_RATE_FRSKY, "9600");
-
-
+		MainRequestMethod = prefs.getInt(MAINREQUESTMETHOD, 1);
+		FrskySupport = prefs.getBoolean(FRSKY_SUPPORT, false);
 
 	}
 
@@ -458,7 +460,6 @@ public class App extends Application implements Sensors.Listener {
 		editor.putBoolean(ALTCORRECTION, AltCorrection);
 		// editor.putBoolean(ADVANCEDFINCTIONS, AdvancedFunctions);
 		editor.putBoolean(DISABLEBTONEXIT, DisableBTonExit);
-		// editor.putInt(G1, mw._1G);
 		editor.putString(FORCELANGUAGE, ForceLanguage);
 		editor.putInt(PERIODICSPEAKING, PeriodicSpeaking);
 		editor.putFloat(VOLTAGEALARM, VoltageAlarm);
@@ -469,10 +470,12 @@ public class App extends Application implements Sensors.Listener {
 		editor.putInt(APPSTARTCOUNTER, AppStartCounter);
 		editor.putInt(DONATEBUTTONPRESSED, DonateButtonPressed);
 		editor.putBoolean(REVERSEROLL, ReverseRoll);
-		editor.putInt(MAPZOOMLEVEL, MapZoomLevel);
+		editor.putFloat(MAPZOOMLEVEL, MapZoomLevel);
 		editor.putInt(MAPCENTERPERIOD, MapCenterPeriod);
 		editor.putInt(COMMUNICATION_TYPE_MW, CommunicationTypeMW);
 		editor.putString(SERIAL_PORT_BAUD_RATE_MW, SerialPortBaudRateMW);
+		editor.putInt(MAINREQUESTMETHOD, MainRequestMethod);
+		editor.putBoolean(FRSKY_SUPPORT, FrskySupport);
 		editor.commit();
 
 		if (!quiet) {
@@ -526,8 +529,7 @@ public class App extends Application implements Sensors.Listener {
 		// ===================timer every 1sek===============================
 		if (timer3 < System.currentTimeMillis()) {
 			timer3 = System.currentTimeMillis() + timer3Freq;
-			
-			
+
 			// Notifications
 			if (mw.i2cError != tempLastI2CErrorCount) {
 				notifications.displayNotification(getString(R.string.Warning), "I2C Error=" + String.valueOf(mw.i2cError), true, 1, false);
@@ -603,6 +605,7 @@ public class App extends Application implements Sensors.Listener {
 						}
 					}
 				}
+
 			}
 
 			String t = new String();
@@ -692,7 +695,7 @@ public class App extends Application implements Sensors.Listener {
 	public void onSensorsStateGPSStatusChange() {
 
 	}
-	
+
 	public void OpenInfoOnClick(View v) {
 		{
 			Log.d("aaa", "OpenInfoOnClick " + v.getTag().toString());
@@ -701,7 +704,5 @@ public class App extends Application implements Sensors.Listener {
 			startActivity(intent);
 		}
 	}
-	
-	
 
 }

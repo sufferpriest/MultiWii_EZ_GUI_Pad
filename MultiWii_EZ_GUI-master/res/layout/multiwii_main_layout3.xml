@@ -15,15 +15,21 @@
         android:text="---"
         android:textColor="@color/tittleText"
         android:visibility="gone" />
-<!-- 
+
     <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#222"
         android:padding="10dip"
-        android:textColor="#555" />
- -->
+        android:textColor="#555"
+        app:footerColor="#FFAA2222"
+        app:footerIndicatorHeight="3dp"
+        app:footerIndicatorStyle="underline"
+        app:footerLineHeight="1dp"
+        app:selectedBold="true"
+        app:selectedColor="#FFF" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="fill_parent"

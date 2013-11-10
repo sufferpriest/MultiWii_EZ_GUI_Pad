@@ -25,14 +25,12 @@ import java.util.Date;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -44,21 +42,16 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.app.SherlockActivity;
-//import com.actionbarsherlock.view.Menu;
-//import com.actionbarsherlock.view.MenuInflater;
-//import com.actionbarsherlock.view.MenuItem;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.app.App;
 
-public class PIDActivity extends Activity {
+public class PIDActivity extends SherlockActivity {
 
 	App app;
-	ActionBarSherlock actionBar;
+	//ActionBarSherlock actionBar;
 
 	EditText P1;
 	EditText P2;
@@ -117,13 +110,24 @@ public class PIDActivity extends Activity {
 		app.OpenInfoOnClick(v);
 	}
 
+	public void SetPIDNames() {
+		((TextView) findViewById(R.id.PIDName0)).setText(app.mw.PIDNames[0]);
+		((TextView) findViewById(R.id.PIDName1)).setText(app.mw.PIDNames[1]);
+		((TextView) findViewById(R.id.PIDName2)).setText(app.mw.PIDNames[2]);
+		((TextView) findViewById(R.id.PIDName3)).setText(app.mw.PIDNames[3]);
+		((TextView) findViewById(R.id.PIDName4)).setText(app.mw.PIDNames[4]);
+		((TextView) findViewById(R.id.PIDName5)).setText(app.mw.PIDNames[5]);
+		((TextView) findViewById(R.id.PIDName6)).setText(app.mw.PIDNames[6]);
+		((TextView) findViewById(R.id.PIDName7)).setText(app.mw.PIDNames[7]);
+		((TextView) findViewById(R.id.PIDName8)).setText(app.mw.PIDNames[8]);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pid_layout);
 
-		//getSupportActionBar().setTitle(getString(R.string.PID));
-		setTitle(getString(R.string.PID));
+		getSupportActionBar().setTitle(getString(R.string.PID));
 
 		app = (App) getApplication();
 		//actionBar = getSherlock();
@@ -176,6 +180,8 @@ public class PIDActivity extends Activity {
 
 		loadProfileFiles();
 
+		SetPIDNames();
+
 	}
 
 	private void loadProfileFiles() {
@@ -218,10 +224,9 @@ public class PIDActivity extends Activity {
 		app.Say(getString(R.string.PID));
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-		while (app.commMW.dataAvailable()) {
-			app.mw.ProcessSerialData(false);
-		}
-		ShowData();
+	
+
+		ReadOnClick(null);
 	}
 
 	public void ReadOnClick(View v) {
@@ -238,33 +243,7 @@ public class PIDActivity extends Activity {
 
 	}
 
-	public void ResetOnClick(View v) {
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getString(R.string.ResetALLnotonlyPIDparamstodefault)).setCancelable(false).setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
-
-			public void onClick(DialogInterface dialog, int id) {
-
-				app.mw.SendRequestMSP_RESET_CONF();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				ReadOnClick(null);
-				Toast.makeText(getApplicationContext(), getString(R.string.ValuesaresettodefaultPressreadbuttonnow), Toast.LENGTH_LONG).show();
-
-			}
-		}).setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.cancel();
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
-
-	}
-
+	
 	void ShareIt() {
 
 		try {
@@ -578,110 +557,15 @@ public class PIDActivity extends Activity {
 
 	}
 
-	// ////////////////////////dialog slider
-
-	// public void TVOnClick0_250(View v) {
-	// CustomDialog(v, 0.25f);
-	// }
-	//
-	// public void TVOnClick2_50(View v) {
-	// CustomDialog(v, 2.5f);
-	// }
-	//
-	// public void TVOnClick1(View v) {
-	// CustomDialog(v, 1);
-	// }
-	//
-	// public void TVOnClick5(View v) {
-	// CustomDialog(v, 5);
-	// }
-	//
-	// public void TVOnClick20(View v) {
-	// CustomDialog(v, 20);
-	// }
-	//
-	// public void TVOnClick25(View v) {
-	// CustomDialog(v, 25);
-	// }
-	//
-	// public void TVOnClick100(View v) {
-	// CustomDialog(v, 100);
-	// }
-
-	// void CustomDialog(final View v, final float maxValue) {
-	// AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-	//
-	// LayoutInflater inflater = (LayoutInflater)
-	// getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	// View layout = inflater.inflate(R.layout.custom_dialog, (ViewGroup)
-	// findViewById(R.id.your_dialog_root_element));
-	//
-	// SeekBar seekbar = (SeekBar)
-	// layout.findViewById(R.id.seekBarCustomDialog);
-	// seekbar.setMax(1000);
-	// seekbar.setProgress((int) Functions.map(Float.parseFloat(((EditText)
-	// v).getText().toString().replace(",", ".")), 0f, maxValue, 0f, 1000f));
-	//
-	// final TextView tv = (TextView) layout.findViewById(R.id.text);
-	//
-	// tv.setText(((EditText) v).getText().toString());
-	//
-	// seekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-	//
-	// @Override
-	// public void onStopTrackingTouch(SeekBar seekBar) {
-	//
-	// }
-	//
-	// @Override
-	// public void onStartTrackingTouch(SeekBar seekBar) {
-	//
-	// }
-	//
-	// @Override
-	// public void onProgressChanged(SeekBar seekBar, int progress, boolean
-	// fromUser) {
-	// float v;
-	// v = Functions.map(progress, 0, 1000, 0, maxValue);
-	// tv.setText(String.valueOf(v));
-	// }
-	// });
-	//
-	// alertDialogBuilder.setView(layout);
-	// alertDialogBuilder.setCancelable(false);
-	// alertDialogBuilder.setPositiveButton("Yes", new
-	// DialogInterface.OnClickListener() {
-	// public void onClick(DialogInterface dialog, int id) {
-	// ((EditText) v).setText(String.valueOf(tv.getText().toString()));
-	// }
-	// });
-	// alertDialogBuilder.setNegativeButton("No", new
-	// DialogInterface.OnClickListener() {
-	// public void onClick(DialogInterface dialog, int id) {
-	//
-	// dialog.cancel();
-	// }
-	// });
-	//
-	// // create alert dialog
-	// AlertDialog alertDialog = alertDialogBuilder.create();
-	//
-	// // show it
-	// alertDialog.show();
-	//
-	// }
-
-	// /////////////////end dialog
-
 	// /////menu////////
-
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu_pid, menu);
 		return true;
 	}
 
-
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.MenuReadPID) {
 			ReadOnClick(null);
@@ -693,10 +577,7 @@ public class PIDActivity extends Activity {
 			return true;
 		}
 
-		if (item.getItemId() == R.id.MenuResetPID) {
-			ResetOnClick(null);
-			return true;
-		}
+	
 
 		if (item.getItemId() == R.id.MenuSharePID) {
 			ShareIt();

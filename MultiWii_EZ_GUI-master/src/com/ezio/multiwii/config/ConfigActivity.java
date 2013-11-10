@@ -24,10 +24,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.ezio.multiwii.R;
@@ -57,12 +60,15 @@ public class ConfigActivity extends SherlockActivity {
 	CheckBox CheckBoxCopyFrskyToMW;
 	CheckBox CheckBoxReverseRollDirection;
 	CheckBox CheckBoxUseFTDISerial;
+	CheckBox CheckBoxNewRequestMethod;
+	CheckBox CheckBoxFrskySupport;
 
 	RadioButton RadioNotForce;
 	RadioButton RadioForceEnglish;
 	RadioButton RadioForceGerman;
 	RadioButton RadioForceHungarian;
 	RadioButton RadioForcePolish;
+	RadioButton RadioForceCzech;
 
 	EditText EditTextPeriodicSpeaking;
 	EditText EditTextVoltageAlarm;
@@ -78,7 +84,7 @@ public class ConfigActivity extends SherlockActivity {
 	private static final int REQUEST_CONNECT_DEVICE_FRSKY = 2;
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		Log.d(BT_old.TAG, "onActivityResult " + resultCode);
+		// Log.d(BT_old.TAG, "onActivityResult " + resultCode);
 		switch (requestCode) {
 
 		case REQUEST_CONNECT_DEVICE_MULTIWII:
@@ -142,6 +148,7 @@ public class ConfigActivity extends SherlockActivity {
 		RadioForceGerman = (RadioButton) findViewById(R.id.radioForceGerman);
 		RadioForceHungarian = (RadioButton) findViewById(R.id.radioForceHungarian);
 		RadioForcePolish = (RadioButton) findViewById(R.id.radioForcePolish);
+		RadioForceCzech = (RadioButton) findViewById(R.id.radioForceCzech);
 		EditTextPeriodicSpeaking = (EditText) findViewById(R.id.editTextPeriodicSpeaking);
 		EditTextVoltageAlarm = (EditText) findViewById(R.id.editTextVoltageAlarm);
 		CheckBoxUseOfflineMap = (CheckBox) findViewById(R.id.checkBoxUseOfflineMap);
@@ -154,12 +161,32 @@ public class ConfigActivity extends SherlockActivity {
 		LayoutSerialFTDI = (LinearLayout) findViewById(R.id.LinearLayoutSerialPort);
 		RadioFTDI = (RadioButton) findViewById(R.id.radioFTDI);
 		RadioOtherChips = (RadioButton) findViewById(R.id.radioOtherChips);
+		CheckBoxNewRequestMethod = (CheckBox) findViewById(R.id.checkBoxNewRequestMethod);
+
+		CheckBoxFrskySupport = (CheckBox) findViewById(R.id.checkBoxFrskySupport);
+		CheckBoxFrskySupport.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				ShowFrskySupport(isChecked);
+			}
+		});
 		ttsESpeakDownload = (Button) findViewById(R.id.buttonDownloadTTSESpeak);
+
+	}
+
+	void ShowFrskySupport(boolean visible) {
+		if (visible) {
+			findViewById(R.id.FrskySupportLayout).setVisibility(View.VISIBLE);
+		} else {
+			findViewById(R.id.FrskySupportLayout).setVisibility(View.GONE);
+		}
 	}
 
 	@Override
 	protected void onPause() {
 		SaveSettingsOnClick(null);
+		Toast.makeText(getApplicationContext(), getString(R.string.PleaseRestart), Toast.LENGTH_LONG).show();
 		super.onPause();
 	}
 
@@ -208,6 +235,7 @@ public class ConfigActivity extends SherlockActivity {
 		RadioForceGerman.setChecked(app.ForceLanguage.equals("de"));
 		RadioForceHungarian.setChecked(app.ForceLanguage.equals("hu"));
 		RadioForcePolish.setChecked(app.ForceLanguage.equals("pl"));
+		RadioForcePolish.setChecked(app.ForceLanguage.equals("cz"));
 
 		EditTextPeriodicSpeaking.setText(String.valueOf(app.PeriodicSpeaking / 1000));
 
@@ -215,6 +243,15 @@ public class ConfigActivity extends SherlockActivity {
 		EditTextRefreshRate.setText(String.valueOf(app.RefreshRate));
 		EditTextMapCenterPeriod.setText(String.valueOf(app.MapCenterPeriod));
 		EditTextSerialBaudRateMW.setText(app.SerialPortBaudRateMW);
+
+		if (app.MainRequestMethod == 2) {
+			CheckBoxNewRequestMethod.setChecked(true);
+		} else {
+			CheckBoxNewRequestMethod.setChecked(false);
+		}
+
+		CheckBoxFrskySupport.setChecked(app.FrskySupport);
+		ShowFrskySupport(app.FrskySupport);
 		boolean ttsESpeak = MiscTool.checkApkExist(this, "com.googlecode.eyesfree.espeak");
 		ttsESpeakDownload.setEnabled(!ttsESpeak);
 		app.Say(getString(R.string.Config));
@@ -263,6 +300,8 @@ public class ConfigActivity extends SherlockActivity {
 			app.ForceLanguage = "hu";
 		if (RadioForcePolish.isChecked())
 			app.ForceLanguage = "pl";
+		if (RadioForceCzech.isChecked())
+			app.ForceLanguage = "cs";
 
 		app.PeriodicSpeaking = Integer.parseInt(EditTextPeriodicSpeaking.getText().toString()) * 1000;
 		app.VoltageAlarm = Float.parseFloat(EditTextVoltageAlarm.getText().toString());
@@ -282,9 +321,17 @@ public class ConfigActivity extends SherlockActivity {
 
 		app.SerialPortBaudRateMW = EditTextSerialBaudRateMW.getText().toString();
 
+		if (CheckBoxNewRequestMethod.isChecked()) {
+			app.MainRequestMethod = 2;
+		} else {
+			app.MainRequestMethod = 1;
+		}
+
+		app.FrskySupport = CheckBoxFrskySupport.isChecked();
+
 		app.SaveSettings(false);
 
-		//app.Init();
+		// app.Init();
 
 	}
 }

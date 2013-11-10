@@ -14,9 +14,41 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
+//    "ARM;"
+
+//    "ANGLE;"
+//    "HORIZON;"
+
+//    "BARO;"
+//    "VARIO;"
+//    "MAG;"
+
+//    "HEADFREE;"
+//    "HEADADJ;"  
+
+//    "CAMSTAB;"
+//    "CAMTRIG;"
+
+//    "GPS HOME;"
+//    "GPS HOLD;"
+
+//    "PASSTHRU;"
+
+//    "BEEPER;"
+//    "LEDMAX;"
+//    "LEDLOW;"
+//    "LLIGHTS;"
+
+//    "CALIB;"
+//    "GOVERNOR;"
+
+//    "OSD SW;"
+
+
 package com.ezio.multiwii.aux_pid;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -35,19 +67,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-//import com.actionbarsherlock.view.Menu;
-//import com.actionbarsherlock.view.MenuInflater;
-//import com.actionbarsherlock.view.MenuItem;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.app.App;
 
-public class AUXActivity extends Activity {
+public class AUXActivity extends SherlockActivity {
 
 	App app;
 	private boolean killme = false;
@@ -67,7 +94,7 @@ public class AUXActivity extends Activity {
 
 			TextViewInfo.setText("Aux1:" + GetTextValueOfAux(app.mw.rcAUX1) + " " + String.valueOf((int) app.mw.rcAUX1) + " Aux2:" + GetTextValueOfAux(app.mw.rcAUX2) + " " + String.valueOf((int) app.mw.rcAUX2) + " Aux3:" + GetTextValueOfAux(app.mw.rcAUX3) + " " + String.valueOf((int) app.mw.rcAUX3) + " Aux4:" + GetTextValueOfAux(app.mw.rcAUX4) + " " + String.valueOf((int) app.mw.rcAUX4));
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 			Log.d(app.TAG, "loop " + this.getClass().getName());
@@ -141,7 +168,7 @@ public class AUXActivity extends Activity {
 
 		app = (App) getApplication();
 
-		setTitle(getString(R.string.SetCheckboxes));
+		getSupportActionBar().setTitle(getString(R.string.SetCheckboxes));
 
 		CreateGUI();
 
@@ -338,7 +365,7 @@ public class AUXActivity extends Activity {
 	// /////menu////////
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu_aux, menu);
 		return true;
 	}

@@ -19,7 +19,6 @@ package com.ezio.multiwii.graph;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,20 +27,16 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.actionbarsherlock.app.SherlockActivity;
-//import com.actionbarsherlock.view.Menu;
-//import com.actionbarsherlock.view.MenuInflater;
-//import com.actionbarsherlock.view.MenuItem;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.app.App;
 import com.ezio.multiwii.graph.GraphView.GraphViewData;
 import com.ezio.multiwii.graph.GraphView.LegendAlign;
 import com.ezio.multiwii.graph.GraphViewSeries.GraphViewSeriesStyle;
 
-public class GraphsActivity extends Activity {
+public class GraphsActivity extends SherlockActivity {
 
 	private boolean killme = false;
 
@@ -90,6 +85,12 @@ public class GraphsActivity extends Activity {
 				//
 				// app.mw.alt = rnd.nextFloat();
 				// app.mw.head = rnd.nextFloat();
+
+				// app.mw.debug1 = rnd.nextFloat();
+				// app.mw.debug2 = rnd.nextFloat();
+				// app.mw.debug3 = rnd.nextFloat();
+				// app.mw.debug4 = rnd.nextFloat();
+
 				// //////
 
 				for (GraphViewSeries s : series) {
@@ -123,14 +124,28 @@ public class GraphsActivity extends Activity {
 
 					if (s.key.equals(app.HEAD))
 						s.appendData(new GraphViewData(CurentPosition, app.mw.head), true);
+					// /
+					if (s.description.equals(app.DEBUG1))
+						s.appendData(new GraphViewData(CurentPosition, app.mw.debug1), true);
+
+					if (s.description.equals(app.DEBUG2))
+						s.appendData(new GraphViewData(CurentPosition, app.mw.debug2), true);
+
+					if (s.description.equals(app.DEBUG3))
+						s.appendData(new GraphViewData(CurentPosition, app.mw.debug3), true);
+
+					if (s.description.equals(app.DEBUG4))
+						s.appendData(new GraphViewData(CurentPosition, app.mw.debug4), true);
+
 				}
 			}
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, 100);
-			
-			if(app.D)	Log.d(app.TAG, "loop "+this.getClass().getName());
+
+			if (app.D)
+				Log.d(app.TAG, "loop " + this.getClass().getName());
 
 		}
 	};
@@ -185,6 +200,19 @@ public class GraphsActivity extends Activity {
 		if (gr.contains(app.HEAD))
 			series.add(new GraphViewSeries(app.HEAD, getString(R.string.HEAD), new GraphViewSeriesStyle(Color.rgb(255, 226, 124), 3), new GraphViewData[] { new GraphViewData(0, 0) }));
 
+		if (gr.contains(app.DEBUG1))
+			series.add(new GraphViewSeries(app.DEBUG1, app.DEBUG1, new GraphViewSeriesStyle(Color.rgb(200, 50, 0), 3), new GraphViewData[] { new GraphViewData(0, 0) }));
+
+		if (gr.contains(app.DEBUG2))
+			series.add(new GraphViewSeries(app.DEBUG2, app.DEBUG2, new GraphViewSeriesStyle(Color.rgb(0, 200, 50), 3), new GraphViewData[] { new GraphViewData(0, 0) }));
+
+		if (gr.contains(app.DEBUG3))
+			series.add(new GraphViewSeries(app.DEBUG3, app.DEBUG3, new GraphViewSeriesStyle(Color.rgb(50, 0, 200), 3), new GraphViewData[] { new GraphViewData(0, 0) }));
+
+		if (gr.contains(app.DEBUG4))
+			series.add(new GraphViewSeries(app.DEBUG4, app.DEBUG4, new GraphViewSeriesStyle(Color.rgb(150, 100, 50), 3), new GraphViewData[] { new GraphViewData(0, 0) }));
+
+		// /
 		for (GraphViewSeries s : series) {
 			graphView.addSeries(s);
 		}
@@ -212,12 +240,14 @@ public class GraphsActivity extends Activity {
 	}
 
 	// /////menu////////
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu_graphs, menu);
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.MenuGraphsShow) {
 			startActivity(new Intent(getApplicationContext(), SelectToShowActivity.class));

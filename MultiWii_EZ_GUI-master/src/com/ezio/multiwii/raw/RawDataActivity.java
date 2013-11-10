@@ -60,7 +60,7 @@ public class RawDataActivity extends Activity {
 				FlashUpdate.setVisibility(View.VISIBLE);
 			}
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 
@@ -153,7 +153,7 @@ public class RawDataActivity extends Activity {
 		log("GPSPresent", app.mw.GPSPresent);
 		log("SonarPresent", app.mw.SonarPresent);
 
-		log("present", app.mw.present);
+		log("present", app.mw.SensorPresent);
 		log("mode", app.mw.mode);
 		// log("levelMode", app.mw.levelMode);
 
@@ -284,8 +284,11 @@ public class RawDataActivity extends Activity {
 		if (app.D) {
 			Toast.makeText(getApplicationContext(), "Debug version", Toast.LENGTH_LONG).show();
 			app.Say("Debug version");
-			app.mw.GPS_longitude = 23654111;
-			app.mw.GPS_latitude = 498547500;
+			app.mw.GPS_longitude = 24414160;
+			app.mw.GPS_latitude = 488300660;
+			app.mw.Waypoints[0].Lat = 488300660;
+			app.mw.Waypoints[0].Lon = 24414160;
+
 		}
 
 	}

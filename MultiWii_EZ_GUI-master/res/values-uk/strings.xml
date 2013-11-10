@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+
     <string name="scanning">пошук пристроїв...</string>
     <string name="select_device">виберіть пристрій для підключення</string>
     <string name="none_paired">Немає парованих пристроїв</string>
@@ -132,7 +132,9 @@
     <string name="SetCheckboxes">AUX</string>
     <string name="Set">Встановити тимчасово</string>
     <string name="SavetoEEPROM">Зберегти до EEPROM</string>
+
     <!-- GRAPHS VIEW -->
+
     <string name="Graphs">Графіки</string>
     <string name="show">Показувати</string>
     <string name="ACCROLL">ACC ROLL</string>
@@ -147,21 +149,26 @@
     <string name="ALT">ALT</string>
     <string name="HEAD">HEAD</string>
     <string name="Pause">Пауза</string>
+
     <!-- end graphs -->
+
     <string name="SelectBTdeviceFrsky">Вибрати Frsky BT</string>
     <string name="Frsky">Frsky</string>
     <string name="TxRSSI">TxRSSI</string>
     <string name="RxRSSI">RxRSSI</string>
     <string name="Connect_frsky">Підключ.Frsky</string>
     <string name="UseOfflineMap">Використовувати кешовані мапи</string>
-    <string name="RefreshRate">Частота Оновлення в мс (має бути &amp;gt;=100)</string>
+    <string name="RefreshRate">Частота Оновлення в мс (має бути >=100)</string>
     <string name="ConnectionBug">Використовуйте, при збоях підключення, коли натискаються кнопки.\nНаразі працює тільки на Приборці2</string>
     <string name="CopyFrskyToMW">Використовувати данні Frsky будь-де</string>
+
     <!-- menu -->
     <string name="page1">Прибори</string>
     <string name="page2">MW Настройки</string>
     <string name="page3">Конфігурації</string>
+
     <!-- end menu -->
+
     <string name="RawData">Потік Данних</string>
     <string name="ShareIt">Поділитись налаштуваннями</string>
     <string name="SelectSetting">Вибрати налаштування</string>
@@ -213,4 +220,5 @@
     <string name="BatWarning1">ТривогаБатар1</string>
     <string name="BatWarning2">ТривогаБатар2</string>
     <string name="BatCritical">НебезпекаБатар</string>
+
 </resources>

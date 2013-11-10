@@ -129,7 +129,7 @@ public class GPSActivity extends SherlockActivity {
 
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			// app.mw.SendRequestGetWayPoint(0);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
@@ -197,6 +197,7 @@ public class GPSActivity extends SherlockActivity {
 		super.onPause();
 		mHandler.removeCallbacks(update);
 		killme = true;
+		app.sensors.stopMagACC();
 	}
 
 	@Override
@@ -217,6 +218,8 @@ public class GPSActivity extends SherlockActivity {
 		CheckBoxInjectGPS.setChecked(app.InjectGPSEnable);
 
 		app.Say(getString(R.string.GPS));
+		
+		app.sensors.startMagACC();
 
 	}
 

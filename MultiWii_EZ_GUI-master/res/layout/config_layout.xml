@@ -53,21 +53,6 @@
                     android:text="---"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Button
-                    android:id="@+id/buttonSelectBTDeviceFrsky"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="SelectFrskyDevice"
-                    android:text="@string/SelectBTdeviceFrsky" />
-
-                <TextView
-                    android:id="@+id/textViewMacAddressFrsky"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="---"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
                 <CheckBox
                     android:id="@+id/checkBoxConnectOnStart"
                     android:layout_width="wrap_content"
@@ -76,16 +61,22 @@
                     android:visibility="gone" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxCopyFrskyToMW"
+                    android:id="@+id/checkBoxNewRequestMethod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/CopyFrskyToMW" />
+                    android:text="@string/NewRequestMethod" />
 
                 <CheckBox
                     android:id="@+id/checkBoxDisableBTonExit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/disableBTonExit" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxFrskySupport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FrskySupport" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -137,6 +128,43 @@
                         android:layout_height="wrap_content"
                         android:text="@string/RestartInfo" />
                 </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/FrskySupportLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/frame"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/smalltittle"
+                    android:text="@string/Frsky"
+                    android:textColor="@color/smalltittleText" />
+
+                <Button
+                    android:id="@+id/buttonSelectBTDeviceFrsky"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="SelectFrskyDevice"
+                    android:text="@string/SelectBTdeviceFrsky" />
+
+                <TextView
+                    android:id="@+id/textViewMacAddressFrsky"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxCopyFrskyToMW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CopyFrskyToMW" />
             </LinearLayout>
 
             <LinearLayout
@@ -468,6 +496,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ForcePolish" />
+
+                    <RadioButton
+                        android:id="@+id/radioForceCzech"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ForceCzech" />
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>

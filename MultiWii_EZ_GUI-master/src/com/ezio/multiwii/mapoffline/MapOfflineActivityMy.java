@@ -99,7 +99,7 @@ public class MapOfflineActivityMy extends Activity {
 
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, 1000);
 
@@ -127,7 +127,7 @@ public class MapOfflineActivityMy extends Activity {
 		copter = new MapOfflineCopterOverlay(getApplicationContext());
 
 		myMapController = mapView.getController();
-		myMapController.setZoom(app.MapZoomLevel);
+		myMapController.setZoom((int)app.MapZoomLevel);
 
 		circles = new MapOfflineCirclesOverlay(getApplicationContext());
 		copter = new MapOfflineCopterOverlay(getApplicationContext());

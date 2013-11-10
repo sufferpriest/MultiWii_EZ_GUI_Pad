@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+
     <string name="app_name">MultiWii EZ-GUI</string>
     <string name="scanning">scanning for devices...</string>
     <string name="select_device">select a device to connect</string>
@@ -13,7 +13,7 @@
     <string name="Pitch">Pitch</string>
     <string name="Roll">Roll</string>
     <string name="Mag">Mag</string>
-    <string name="Config">Config</string>
+    <string name="Config">Settings</string>
     <string name="Logging">Logging</string>
     <string name="RadioMode">Radio Mode</string>
     <string name="Mode1">Mode1</string>
@@ -102,7 +102,7 @@
     <string name="Donate">Donate</string>
     <string name="Loggingstarted">Logging started</string>
     <string name="Loggingstopedandsaved">Logging stoped and saved</string>
-    <string name="ResetALLnotonlyPIDparamstodefault">Reset ALL (not only PID) params to default?</string>
+    <string name="ResetALLnotonlyPIDparamstodefault">This will reset ALL (not only PID) parameters to default values, do you want continue?</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="ValuesaresettodefaultPressreadbuttonnow">Values are set to default. Press read button now.</string>
@@ -132,7 +132,9 @@
     <string name="SetCheckboxes">AUX</string>
     <string name="Set">Set</string>
     <string name="SavetoEEPROM">Save to EEPROM</string>
+
     <!-- GRAPHS VIEW -->
+
     <string name="Graphs">Graphs</string>
     <string name="show">Show</string>
     <string name="ACCROLL">ACC ROLL</string>
@@ -147,24 +149,29 @@
     <string name="ALT">ALT</string>
     <string name="HEAD">HEAD</string>
     <string name="Pause">Pause</string>
+
     <!-- end graphs -->
+
     <string name="SelectBTdeviceFrsky">Select Frsky BT</string>
     <string name="Frsky">Frsky</string>
     <string name="TxRSSI">TxRSSI</string>
     <string name="RxRSSI">RxRSSI</string>
     <string name="Connect_frsky">Frsky Connect</string>
     <string name="UseOfflineMap">Use Google Map engine, if not checked, use OSM Map by default</string>
-    <string name="RefreshRate">Refresh Rate in ms (should be &amp;gt;=100)</string>
+    <string name="RefreshRate">Refresh Rate in ms (should be >=100)</string>
     <string name="ConnectionBug">Use when it disconnects when button is pressed (right now only works for dashboard2)</string>
     <string name="CopyFrskyToMW">Use data from Frsky everywhere</string>
+
     <!-- menu -->
     <string name="page1">Dashboard</string>
     <string name="page2">MW Settings</string>
     <string name="page3">Config</string>
+
     <!-- end menu -->
+
     <string name="RawData">Raw Data</string>
     <string name="ShareIt">Share Your Config</string>
-    <string name="SelectSetting">Select Setting</string>
+    <string name="SelectSetting">Select the setting configuration (you can set for instance different pid and rate)</string>
     <string name="RXBIND">RX BIND</string>
     <string name="FollowMe">Follow Me: #define USE_MSP_WP should be uncomented in config.h; not work with I2C GPS; blinks when phone position is send to MW</string>
     <string name="InfoDonate">Do you find this application useful? Support its development by flattering it or sending donations to the developer!</string>
@@ -227,6 +234,34 @@
     <string name="StartGpsEmulation">Start GPS emulation</string>
     <string name="ClickOnTheNameForInfo">(click name for info)</string>
     <string name="ClickHereForMoreInfo">Click here for more info</string>
+    <string name="NewRequestMethod">New Request Method</string>
+    <string name="WaypointsMap">Waypoints Map</string>
+    <string name="PleaseRestart">Please restart the application</string>
+    <string name="MoveMapEnable">Moving Map enable</string>
+    <string name="MoveMapDissable">Moving Map dissable</string>
+    <string name="AddCirclePath">Add Circle Path</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Radius">Radius</string>
+    <string name="EnterRadius">Enter the radius of the circle in meters</string>
+    <string name="Close">Close</string>
+    <string name="ForceCzech">Force Czech</string>
+    <string name="Bigger">Bigger</string>
+    <string name="Smaller">Smaller</string>
+    <string name="RemWP">Rem WP</string>
+    <string name="AddWP">Add WP</string>
+    <string name="GooglePlayServiecesError">Google Play Servieces error</string>
+    <string name="NextWP">Next WP</string>
+    <string name="PrevWP">Prev WP</string>
+    <string name="Clean">Clean</string>
+    <string name="MoveMap">Move Map</string>
+    <string name="FrskySupport">Frsky Support</string>
+    <string name="Revers">Revers</string>
+    <string name="Factoryreset">Factory reset</string>
+    <string name="Misc">Misc</string>
+    <string name="BindInfo">Bind spektrum satellites</string>
+    <string name="PowerTrigger">Power Trigger</string>
+    <string name="LiveTime">Live time</string>
+    <string name="FactoryResetInfo">Reset all params to default</string>
     <string name="installGoogleMapTip">Not found Google Map installed, do you want to install it? (Before do it, please ROOT your phone)</string>
     <string name="notRootTip">Your phone is not Rooted, please root it first.</string>
     <string name="googleMapInstalled">Google Map is installed now, please reboot phone first.</string>
@@ -239,5 +274,5 @@
     <string name="ttsDataUseTip">Tip: After download finished, please install it, and choose it as default TTS engine</string>
     <string name="switchScreenMode">Switch Screen (Phone or Pad)</string>
     <string name="screenSizeSmallTip">Current support screen size more than 5 inches</string>
-    <string name="googleMapApiKey">AIzaSyA2uEW4ChDcpaSf7HFZb7dGg_YoUCwti_k</string>
+    <string name="googleMapApiKey">AIzaSyBZ1mKFEIQDga1gKYo1x9BDw0a-l9pFMEo</string>
 </resources>

@@ -224,9 +224,17 @@ public class Sensors implements SensorEventListener, LocationListener {
 
 	}
 
-	private void registerListeners() {
-		m_sensorManager.registerListener(this, m_sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_NORMAL);
+	public void startMagACC() {
+		m_sensorManager.registerListener(this, m_sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_GAME);
 		m_sensorManager.registerListener(this, m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+
+	}
+
+	public void stopMagACC() {
+		m_sensorManager.unregisterListener(this);
+	}
+
+	private void registerListeners() {
 		locationManager.requestLocationUpdates(provider, 0, 0, this);
 		try {
 		locationManager.requestLocationUpdates(provider_network, 0, 0, this);
@@ -234,7 +242,7 @@ public class Sensors implements SensorEventListener, LocationListener {
 	}
 
 	private void unregisterListeners() {
-		m_sensorManager.unregisterListener(this);
+		stopMagACC();
 		locationManager.removeUpdates(this);
 	}
 
@@ -302,10 +310,6 @@ public class Sensors implements SensorEventListener, LocationListener {
 
 		geoField = new GeomagneticField(Double.valueOf(location.getLatitude()).floatValue(), Double.valueOf(location.getLongitude()).floatValue(), Double.valueOf(location.getAltitude()).floatValue(), System.currentTimeMillis());
 		Declination = geoField.getDeclination();
-
-		// this is proper way but it doesn't work on some phones
-		// if(location.getExtras()!=null)
-		// PhoneNumSat = (Integer) location.getExtras().get("satellites");
 
 		if (mListener != null)
 			mListener.onSensorsStateGPSLocationChange();

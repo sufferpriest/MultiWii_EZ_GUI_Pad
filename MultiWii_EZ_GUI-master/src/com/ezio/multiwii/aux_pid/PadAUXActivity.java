@@ -68,7 +68,7 @@ public class PadAUXActivity {
 			SetActiveStates();
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 			Log.d(app.TAG, "loop " + mContext.getClass().getName());

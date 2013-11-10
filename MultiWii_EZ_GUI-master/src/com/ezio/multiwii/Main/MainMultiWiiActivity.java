@@ -16,7 +16,6 @@
  */
 package com.ezio.multiwii.Main;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -34,15 +33,10 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.app.SherlockActivity;
-//import com.actionbarsherlock.view.Menu;
-//import com.actionbarsherlock.view.MenuInflater;
-//import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.about.AboutActivity;
 import com.ezio.multiwii.about.InfoActivity;
@@ -51,9 +45,11 @@ import com.ezio.multiwii.advanced.ControlActivity;
 import com.ezio.multiwii.app.App;
 import com.ezio.multiwii.aux_pid.AUXActivity;
 import com.ezio.multiwii.aux_pid.PIDActivity;
+import com.ezio.multiwii.aux_pid.ServosActivity;
 import com.ezio.multiwii.config.ConfigActivity;
 import com.ezio.multiwii.dashboard.Dashboard1Activity;
 import com.ezio.multiwii.dashboard.Dashboard2Activity;
+import com.ezio.multiwii.dashboard.Dashboard4Activity;
 import com.ezio.multiwii.dashboard.dashboard3.Dashboard3Activity;
 import com.ezio.multiwii.dashboard.dashboard3.Dashboard3GoogleMapActivity;
 import com.ezio.multiwii.frsky.FrskyActivity;
@@ -66,31 +62,35 @@ import com.ezio.multiwii.log.LogActivity;
 import com.ezio.multiwii.map.MapActivityMy;
 import com.ezio.multiwii.mapoffline.MapOfflineActivityMy;
 import com.ezio.multiwii.motors.MotorsActivity;
+import com.ezio.multiwii.other.MiscActivity;
 import com.ezio.multiwii.other.OtherActivity;
 import com.ezio.multiwii.radio.RadioActivity;
 import com.ezio.multiwii.raw.RawDataActivity;
+import com.ezio.multiwii.waypoints.MapWaypointsActivity;
 import com.ezio.multiwii.waypoints.WaypointActivity;
+import com.ezio.sec.Sec;
 import com.viewpagerindicator.TitlePageIndicator;
 
-public class MainMultiWiiActivity extends Activity {
+public class MainMultiWiiActivity extends SherlockActivity {
 
 	private boolean killme = false;
 
 	App app;
 
-	TextView TVinfo;
+	// TextView TVinfo;
+	TextView TVInfo;
 
 	private Handler mHandler = new Handler();
 
 	ActionBarSherlock actionBar;
 
-	public static final String MY_PUBLISHER_ID = "a15030365bc09b4";
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		app = (App) getApplication();
+
 		Log.d("aaa", "MAIN ON CREATE");
-		//requestWindowFeature(Window.FEATURE_PROGRESS);
+		requestWindowFeature(Window.FEATURE_PROGRESS);
 
 		super.onCreate(savedInstanceState);
 		boolean isFromPadMode = false;
@@ -114,17 +114,17 @@ public class MainMultiWiiActivity extends Activity {
 		adapter.AddView(inflater.inflate(R.layout.multiwii_main_layout3_1, (ViewGroup) null, false));
 		adapter.AddView(inflater.inflate(R.layout.multiwii_main_layout3_2, (ViewGroup) null, false));
 		adapter.AddView(inflater.inflate(R.layout.multiwii_main_layout3_3, (ViewGroup) null, false));
+
+		TVInfo = (TextView) adapter.views.get(0).findViewById(R.id.textViewInfoFirstPage);
+
 		viewPager.setAdapter(adapter);
-		viewPager.setAdapter(adapter);
 
-		//TitlePageIndicator titleIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
-		//titleIndicator.setViewPager(viewPager);
+		TitlePageIndicator titleIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
+		titleIndicator.setViewPager(viewPager);
 
-		app = (App) getApplication();
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-		//getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-		TVinfo = (TextView) findViewById(R.id.TextViewInfo);
+		// TVinfo = (TextView) findViewById(R.id.TextViewInfo);
 
 		/*if (app.AppStartCounter % 10 == 0 && app.DonateButtonPressed == 0) {
 			killme = true;
@@ -162,7 +162,7 @@ public class MainMultiWiiActivity extends Activity {
 			e1.printStackTrace();
 		}
 
-		TVinfo.setText(getString(R.string.app_name) + " " + app_ver + "." + String.valueOf(app_ver_code));
+		TVInfo.setText(getString(R.string.app_name) + " " + app_ver + "." + String.valueOf(app_ver_code));
 
 		if (app.commMW.Connected || app.commFrsky.Connected) {
 
@@ -246,10 +246,23 @@ public class MainMultiWiiActivity extends Activity {
 			app.mw.ProcessSerialData(app.loggingON);
 
 			app.frskyProtocol.ProcessSerialData(false);
-			//setSupportProgress((int) Functions.map(app.frskyProtocol.TxRSSI, 0, 110, 0, 10000));
+			setSupportProgress((int) Functions.map(app.frskyProtocol.TxRSSI, 0, 110, 0, 10000));
+
+			String t = new String();
+			if (app.mw.BaroPresent == 1)
+				t += "BARO ";
+			if (app.mw.GPSPresent == 1)
+				t += "GPS ";
+			if (app.mw.SonarPresent == 1)
+				t += "SONAR ";
+			if (app.mw.MagPresent == 1)
+				t += "MAG ";
+			if (app.mw.AccPresent == 1)
+				t += "ACC";
+			TVInfo.setText("MultiWii " + String.valueOf(app.mw.version/100f) + "\n" + app.mw.MultiTypeName[app.mw.multiType] + "\n" + t);
 
 			app.Frequentjobs();
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 
@@ -309,6 +322,13 @@ public class MainMultiWiiActivity extends Activity {
 		mHandler.removeCallbacksAndMessages(null);
 		startActivity(new Intent(getApplicationContext(), OtherActivity.class));
 	}
+	
+	public void MiscOnClick(View v) {
+		killme = true;
+		mHandler.removeCallbacksAndMessages(null);
+		startActivity(new Intent(getApplicationContext(), MiscActivity.class));
+	}
+
 
 	public void FrskyOnClick(View v) {
 		killme = true;
@@ -344,6 +364,25 @@ public class MainMultiWiiActivity extends Activity {
 		} else {
 			startActivity(new Intent(getApplicationContext(), Dashboard3GoogleMapActivity.class));
 		}
+	}
+
+	public void Dashboard4OnClick(View v) {
+		killme = true;
+		mHandler.removeCallbacksAndMessages(null);
+		startActivity(new Intent(getApplicationContext(), Dashboard4Activity.class));
+	}
+
+	public void NewMapOnClick(View v) {
+		killme = true;
+		mHandler.removeCallbacksAndMessages(null);
+		startActivity(new Intent(getApplicationContext(), MapWaypointsActivity.class).putExtra("WAYPOINT", false));
+	}
+
+	public void WaypointsMapOnClick(View v) {
+		killme = true;
+		mHandler.removeCallbacksAndMessages(null);
+		startActivity(new Intent(getApplicationContext(), MapWaypointsActivity.class).putExtra("WAYPOINT", true));
+
 	}
 
 	public void MapOnClick(View v) {
@@ -405,13 +444,22 @@ public class MainMultiWiiActivity extends Activity {
 		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/maps?q=http:%2F%2Fezio.ovh.org%2Fkml2.php&hl=pl&sll=48.856612,2.366095&sspn=0.015614,0.042272&t=h&z=3")));
 	}
 
+	public void ServosOnClick(View v) {
+		killme = true;
+		mHandler.removeCallbacksAndMessages(null);
+		startActivity(new Intent(getApplicationContext(), ServosActivity.class));
+	}
+
 	// /////menu////////
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
+		menu.findItem(R.id.menu_connect_frsky).setVisible(app.FrskySupport);
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.menu_exit) {
 
@@ -465,7 +513,7 @@ public class MainMultiWiiActivity extends Activity {
 
 			mHandler.postDelayed(update, 100);
 
-			//setSupportProgressBarVisibility(true);
+			setSupportProgressBarVisibility(true);
 
 			return true;
 		}
@@ -537,4 +585,5 @@ public class MainMultiWiiActivity extends Activity {
 	}
 
 	// ///menu end//////
+
 }

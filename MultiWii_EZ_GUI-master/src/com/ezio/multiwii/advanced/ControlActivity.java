@@ -106,7 +106,7 @@ public class ControlActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		app = (App) getApplication();
 		setContentView(R.layout.control_layout);
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);// | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |  
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         
 		SharedPreferences  sp = getSharedPreferences("config", 0);
@@ -279,7 +279,8 @@ public class ControlActivity extends Activity {
 	private static int MENU_HIDEALL = 2;
 	private static int MENU_ARM = 3;
 	private static int MENU_DISARM = 4;
-	
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, MENU_HIDEALL, 0, "HideAll").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM );
 		menu.add(0, MENU_AUX, 1, "AUX").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM );
@@ -289,6 +290,7 @@ public class ControlActivity extends Activity {
 		return true;
 	}
 
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == MENU_AUX) {
 			findViewById(R.id.seektable_tuning).setVisibility(View.GONE);

@@ -16,7 +16,6 @@
  */
 package com.ezio.multiwii.radio;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,7 +26,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.ezio.multiwii.R;
 import com.ezio.multiwii.app.App;
 
-public class RadioActivity extends Activity {
+public class RadioActivity extends SherlockActivity {
 
 	private boolean killme = false;
 
@@ -79,7 +78,7 @@ public class RadioActivity extends Activity {
 
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 

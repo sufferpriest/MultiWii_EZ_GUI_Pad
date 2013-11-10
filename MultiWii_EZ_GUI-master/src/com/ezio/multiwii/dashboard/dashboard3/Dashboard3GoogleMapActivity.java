@@ -132,7 +132,7 @@ public class Dashboard3GoogleMapActivity extends MapActivity {
 					ProgressBarTx.setVisibility(View.GONE);
 				}
 				app.Frequentjobs();
-				app.mw.SendRequest();
+				app.mw.SendRequest(app.MainRequestMethod);
 
 				timer1 = System.currentTimeMillis() + app.RefreshRate;
 
@@ -169,7 +169,7 @@ public class Dashboard3GoogleMapActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 
 		myMapController = mapView.getController();
-		myMapController.setZoom(app.MapZoomLevel);
+		myMapController.setZoom((int)app.MapZoomLevel);
 
 		circles = new MapGoogleCirclesOverlay(getApplicationContext());
 		copter = new MapGoogleCopterOverlayD3(getApplicationContext());

@@ -72,7 +72,7 @@ public class PadGraphsActivity {
 
 			update();
 			
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, 100);
 			

@@ -100,7 +100,7 @@ public class MapActivityMy extends MapActivity {
 
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, 1000);
 
@@ -129,7 +129,7 @@ public class MapActivityMy extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		myMapController = mapView.getController();
 		mapView.setSatellite(true);
-		myMapController.setZoom(app.MapZoomLevel);
+		myMapController.setZoom((int)app.MapZoomLevel);
 
 		mapView.getOverlays().add(copter);
 		mapView.getOverlays().add(circles);

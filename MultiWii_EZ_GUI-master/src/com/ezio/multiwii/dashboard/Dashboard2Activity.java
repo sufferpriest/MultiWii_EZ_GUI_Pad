@@ -17,6 +17,7 @@
 package com.ezio.multiwii.dashboard;
 
 import android.app.Activity;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -54,7 +55,7 @@ public class Dashboard2Activity extends Activity {
 			v.Set(app.mw.GPS_numSat, app.mw.GPS_distanceToHome, app.mw.GPS_directionToHome, app.mw.GPS_speed, app.mw.GPS_altitude, app.mw.alt, app.mw.GPS_latitude, app.mw.GPS_longitude, -app.mw.angy, a * app.mw.angx, app.mw.head, app.mw.vario/100f, state, app.mw.bytevbat, app.mw.pMeterSum, app.mw.intPowerTrigger, app.frskyProtocol.TxRSSI, app.frskyProtocol.RxRSSI);
 
 			app.Frequentjobs();
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 
@@ -72,6 +73,7 @@ public class Dashboard2Activity extends Activity {
 		v = new Dashboard2View(getApplicationContext());
 		setContentView(v);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 	}
 

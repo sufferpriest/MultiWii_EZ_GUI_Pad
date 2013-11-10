@@ -117,6 +117,7 @@ public class MultiWii210 extends MultirotorData {
 
 		int i;
 		int icmd = (int) (cmd & 0xFF);
+		int present;
 		switch (icmd) {
 		case MSP_IDENT:
 			version = read8();
@@ -699,7 +700,6 @@ public class MultiWii210 extends MultirotorData {
 	}
 
 	// //Main Request//////////////////////////////////////////////////
-	@Override
 	public void SendRequest() {
 		if (communication.Connected) {
 			int[] requests;
@@ -839,11 +839,28 @@ public class MultiWii210 extends MultirotorData {
 		Log.d("aaa", "MSP_SET_MOTOR " + String.valueOf(motorTogglesByte));
 	}
 
-	@Override
 	public void SendRequestMSP_RAW_GPS() {
 		sendRequestMSP(requestMSP(MSP_ACC_CALIBRATION));
 		Log.d("aaa", "MSP_RAW_GPS ");
 
+	}
+
+	@Override
+	public void SendRequest(int MainRequestMethod) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void SendRequestMSP_SERVO_CONF() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void SendRequestMSP_SET_SERVO_CONF() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

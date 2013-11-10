@@ -18,6 +18,7 @@ package com.ezio.multiwii.dashboard;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class Dashboard1Activity extends Activity {
 
 			app.Frequentjobs();
 
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 
@@ -116,6 +117,8 @@ public class Dashboard1Activity extends Activity {
 		baro = (TextView) findViewById(R.id.textViewBaro);
 		BattVoltageTV = (TextView) findViewById(R.id.TextViewBattVoltage);
 		PowerSumTV = (TextView) findViewById(R.id.TextViewPowerSum);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		
 
 	}
 
@@ -124,6 +127,7 @@ public class Dashboard1Activity extends Activity {
 		super.onPause();
 		killme = true;
 		mHandler.removeCallbacks(update);
+		app.sensors.stopMagACC();
 	}
 
 	@Override
@@ -133,6 +137,7 @@ public class Dashboard1Activity extends Activity {
 		killme = false;
 		mHandler.postDelayed(update, app.RefreshRate);
 		app.Say(getString(R.string.PitchRoll));
+		app.sensors.startMagACC();
 
 	}
 

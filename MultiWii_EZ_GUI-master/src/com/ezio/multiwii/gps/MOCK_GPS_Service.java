@@ -9,7 +9,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.ezio.multiwii.app.App;
-import com.google.android.maps.GeoPoint;
 
 public class MOCK_GPS_Service extends Service {
 
@@ -44,7 +43,7 @@ public class MOCK_GPS_Service extends Service {
 
 			// app.mw.SendRequest();
 			// app.mw.SendRequestMSP_RAW_GPS();
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme) {
 				mHandler.postDelayed(update, 1000);
 			} else {

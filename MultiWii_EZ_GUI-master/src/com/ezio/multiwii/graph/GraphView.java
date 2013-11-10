@@ -53,7 +53,6 @@ abstract public class GraphView extends LinearLayout {
 		@Override
 		protected void onDraw(Canvas canvas) {
 
-			super.onDraw(canvas);
             paint.setAntiAlias(true);
 
 			// normal
@@ -213,7 +212,6 @@ abstract public class GraphView extends LinearLayout {
 		@Override
 		protected void onDraw(Canvas canvas) {
 			// normal
-			super.onDraw(canvas);
 			paint.setStrokeWidth(0);
 
 			float border = GraphViewConfig.BORDER;
@@ -537,7 +535,7 @@ abstract public class GraphView extends LinearLayout {
 		horlabels = null;
 		numberformatter[0] = null;
 		numberformatter[1] = null;
-		this.invalidate();
+		invalidate();
 		viewVerLabels.invalidate();
 	}
 

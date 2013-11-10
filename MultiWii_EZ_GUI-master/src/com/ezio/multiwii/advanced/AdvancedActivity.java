@@ -53,10 +53,10 @@ public class AdvancedActivity extends Activity {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String value = input.getText().toString();
 
-				//if (value.equals("multiwii")) {
+				if (value.equals("multiwii")) {
 					// mHandler.removeCallbacksAndMessages(null);
 					startActivity(new Intent(getApplicationContext(), ControlActivity.class));
-				//}
+				}
 			}
 		});
 

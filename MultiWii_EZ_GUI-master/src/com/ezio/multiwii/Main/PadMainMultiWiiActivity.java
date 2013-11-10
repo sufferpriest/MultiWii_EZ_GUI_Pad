@@ -280,7 +280,7 @@ public class PadMainMultiWiiActivity extends Activity {
 			
 			updateGraphs();
 			
-			app.mw.SendRequest();
+			app.mw.SendRequest(app.MainRequestMethod);
 			if (!killme)
 				mHandler.postDelayed(update, app.RefreshRate);
 

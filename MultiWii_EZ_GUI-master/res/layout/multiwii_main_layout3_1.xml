@@ -24,13 +24,14 @@
                     android:layout_height="wrap_content" >
 
                     <Button
-                        android:id="@+id/button1"
+                        android:id="@+id/buttonDashboard1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_button_yellow"
                         android:onClick="Dashboard1OnClick"
+                        android:tag="TagDashboard1"
                         android:text="@string/PitchRoll" />
 
                     <Button
@@ -42,7 +43,6 @@
                         android:background="@drawable/custom_button_yellow"
                         android:onClick="Dashboard2OnClick"
                         android:text="@string/dashboard2" />
-
                 </TableRow>
 
                 <TableRow
@@ -60,6 +60,16 @@
                         android:onClick="Dashboard3OnClick"
                         android:text="@string/Dashboard3"
                         android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/Button01"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_yellow"
+                        android:onClick="NewMapOnClick"
+                        android:text="@string/Map" />
 
                     <Button
                         android:id="@+id/button3"
@@ -97,7 +107,6 @@
                         android:background="@drawable/custom_button_yellow"
                         android:onClick="RadioOnClick"
                         android:text="@string/Radio" />
-
                 </TableRow>
 
                 <TableRow
@@ -124,7 +133,6 @@
                         android:background="@drawable/custom_button_yellow"
                         android:onClick="GraphsOnClick"
                         android:text="@string/Graphs" />
-
                 </TableRow>
 
                 <TableRow
@@ -132,7 +140,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="Dashboard4OnClick"
+                        android:text="dashboard 4"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/Button03"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_yellow"
+                        android:onClick="WaypointsMapOnClick"
+                        android:text="@string/WaypointsMap" />
+
                 </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/textViewInfoFirstPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:shadowColor="#000"
+                    android:shadowDx="0"
+                    android:shadowDy="8"
+                    android:shadowRadius="3"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/White" />
 
             </TableLayout>
 
