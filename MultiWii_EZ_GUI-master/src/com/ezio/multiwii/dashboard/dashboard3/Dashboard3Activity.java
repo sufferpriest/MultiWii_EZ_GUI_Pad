@@ -168,7 +168,7 @@ public class Dashboard3Activity extends SherlockFragmentActivity {
 		getSupportActionBar().hide();
 
 		mapView = (MapView) findViewById(R.id.mapViewOSM);
-		mapView.setTileSource(TileSourceFactory.MAPNIK);
+		mapView.setTileSource(TileSourceFactory.CYCLEMAP);// or TileSourceFactory.MAPQUESTOSM
 		mapView.setClickable(true);
 		mapView.setBuiltInZoomControls(true);
 

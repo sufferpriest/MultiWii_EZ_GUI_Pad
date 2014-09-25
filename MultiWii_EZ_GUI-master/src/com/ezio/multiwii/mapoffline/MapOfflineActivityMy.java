@@ -116,7 +116,7 @@ public class MapOfflineActivityMy extends Activity {
 		app = (App) getApplication();
 
 		mapView = new MapView(getApplicationContext(), 256);
-		mapView.setTileSource(TileSourceFactory.MAPNIK);
+		mapView.setTileSource(TileSourceFactory.MAPQUESTOSM);//OR TileSourceFactory.CYCLEMAP
 
 		mapView.setClickable(true);
 		mapView.setBuiltInZoomControls(true);
